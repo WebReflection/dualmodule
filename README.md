@@ -1,42 +1,31 @@
 # Node.js Dual Modules
 
-The minimal amount of effort needed to publish modules, for both ESM and CJS, without ever needing to write an `.mjs` file.
+The minimal amount of effort needed to publish modules, for both ESM and CJS, without ever needing to write an `.mjs`, or `.cjs` file.
 
+## Test It !
 
-## How
-
-Simply have `./cjs/` and `./esm/` folders, in your module, with an `index.js` that represents it.
-
-Add these fields in your `package.json`, and that's it:
-
-```
-{
-  "type": "module",
-  "main": "esm/index.js",
-}
-
-```
-
-Everyone can now `require('module/cjs')` or `import * from 'module'`, as legacy CJS resolution would ignore the `package.json`, and any modern bundlers, or even node.js, would work with native ESM modules 🎉
-
-
-## Example
-
-Following an example for both ESM and CJS, if you `npm i dualmodule` first in any folder:
-
-#### ESM
+You need node 13.10 or higher, and a test folder, such as `~/test/node-modules` to perform this test:
 
 ```sh
-node --experimental-modules --input-type=module -e \
-  'import $ from "dualmodule"; console.log($)'
+mkdir -p ~/test/node-modules
+cd ~/test/node-modules
+npm i dualmodule
+# test CommonJS
+node -e 'console.log(require("dualmodule"))'; # read "CJS"
+# test ESM
+node --input-type=module -e 'import $ from "dualmodule"; console.log($)';
 ```
 
-That will log the string _ESM_, while the following one ...
+If you are in node < 13.10 you'll see an _ExperimentalWarning_, but the output is `ESM`.
 
-#### CJS
+If you are in node >= 13.10 you won't see the warning, just the `ESM` output.
+
+If you'd like to test through any `file.js` in that folder, and you want to test the _ESM_ version of the module:
 
 ```sh
-node -e 'const $ = require("dualmodule/cjs"); console.log($);'
+echo '{"type":"module"}' > ~/test/node-modules/package.json
+echo 'import $ from "dualmodule"; console.log($)' > test.js
+node test.js # read "ESM"
 ```
 
-It will log the string _CJS_.
+And you are good to go 🎉
