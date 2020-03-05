@@ -1,0 +1,1 @@
+var duakmodule = 'UNPKG';

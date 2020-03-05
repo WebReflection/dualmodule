@@ -1,0 +1,23 @@
+{
+  "name": "dualmodule",
+  "version": "0.0.13",
+  "unpkg": "index.js",
+  "type": "module",
+  "module": "./esm/index.js",
+  "main": "./cjs/index.js",
+  "exports": {
+    "import": "./esm/index.js",
+    "default": "./cjs/index.js"
+  },
+  "description": "A way to test dual modules in Node.js",
+  "keywords": [
+    "ESM",
+    "CJS",
+    "dual",
+    "modules",
+    "no",
+    "mjs"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "ISC"
+}
