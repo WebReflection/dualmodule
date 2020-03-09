@@ -1,6 +1,6 @@
 {
   "name": "dualmodule",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "unpkg": "index.js",
   "type": "module",
   "module": "./esm/index.js",
