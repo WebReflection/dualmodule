@@ -1,5 +1,9 @@
 # Node.js Dual Modules
 
+**Abandoned**: this module is now much better via [modulestrap](https://github.com/WebReflection/modulestrap#readme).
+
+- - -
+
 The minimal amount of effort needed to publish modules, for both ESM and CJS, without ever needing to write an `.mjs`, or `.cjs` file.
 
 ## Test It !
